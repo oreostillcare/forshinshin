@@ -187,14 +187,14 @@ export default function Home() {
         ))}
       </div>
     )
-  }  // Music Control Toast with Spotify Embed - Lower right corner positioning
+  }  // Music Control Toast with Spotify Embed - Better positioned to avoid overlap
   const MusicToast = () => (
     <motion.div
       initial={{ x: 100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       exit={{ x: 100, opacity: 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className="fixed bottom-6 right-4 sm:right-6 z-50"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 lg:bottom-8 lg:right-8 xl:bottom-10 xl:right-10 z-40"
     >
       <div className="spotify-player-wrapper relative">
         <div className="absolute -inset-2 bg-white/25 backdrop-blur-lg rounded-3xl z-0 shadow-xl"></div>
@@ -543,8 +543,7 @@ export default function Home() {
               </motion.div>
             </motion.div>
           </div>
-          
-          {/* Music toast positioned in lower right */}
+            {/* Music toast positioned in lower right - Better responsive positioning */}
           <MusicToast />
         </div>
       )}
@@ -556,14 +555,13 @@ export default function Home() {
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,182,193,0.1),transparent_50%)]"></div>
           <div className="absolute inset-0 audio-bg-blend"></div>
-          <FloatingHearts />
-            {/* Music toast for the secret message - Consistent positioning in lower right */}
+          <FloatingHearts />          {/* Music toast for the secret message - Better positioned to avoid overlap */}
           <motion.div
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: 100, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed bottom-6 right-4 sm:right-6 z-50"
+            className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 lg:bottom-8 lg:right-8 xl:bottom-10 xl:right-10 z-40"
           >
             <div className="spotify-player-wrapper relative">
               <div className="absolute -inset-2 bg-white/25 backdrop-blur-lg rounded-3xl z-0 shadow-xl"></div>
@@ -581,21 +579,21 @@ export default function Home() {
                 />
               </div>
             </div>
-          </motion.div>
-            <motion.div 
+          </motion.div>{/* Secret message content - Better responsive layout */}
+          <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl w-full text-center px-4 pb-24"
+            className="max-w-4xl w-full text-center px-4 pb-32 sm:pb-24 lg:pb-32 xl:pb-40 min-h-[calc(100vh-8rem)] flex flex-col justify-center"
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="glass rounded-2xl sm:rounded-3xl p-6 sm:p-12 shadow-2xl border border-white/50"
+              className="glass rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 xl:p-12 shadow-2xl border border-white/50 max-h-[calc(100vh-12rem)] overflow-y-auto"
             >
               <motion.h2 
-                className="text-3xl sm:text-4xl md:text-5xl font-light text-gray-800 mb-8 sm:mb-12 tracking-wide"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-gray-800 mb-6 sm:mb-8 lg:mb-10 xl:mb-12 tracking-wide"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
@@ -603,7 +601,7 @@ export default function Home() {
                 My Dearest <span className="text-rose-600">ShinShin</span>
               </motion.h2>
               <motion.div 
-                className="text-base sm:text-lg text-gray-700 leading-relaxed font-light space-y-4 sm:space-y-6 text-left max-w-2xl mx-auto"
+                className="text-sm sm:text-base lg:text-lg xl:text-xl text-gray-700 leading-relaxed font-light space-y-3 sm:space-y-4 lg:space-y-5 xl:space-y-6 text-left max-w-2xl xl:max-w-3xl mx-auto"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
@@ -628,11 +626,11 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8 }}
-                className="mt-8 sm:mt-12"
+                className="mt-6 sm:mt-8 lg:mt-10 xl:mt-12"
               >
                 <button 
                   onClick={() => setCurrentView('landing')}
-                  className="group relative px-8 sm:px-12 py-3 sm:py-4 text-base sm:text-lg font-light tracking-wider text-gray-700 border border-gray-300 hover:border-rose-400 transition-all duration-500 overflow-hidden bg-white/70 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                  className="group relative px-6 sm:px-8 lg:px-10 xl:px-12 py-3 sm:py-4 text-sm sm:text-base lg:text-lg font-light tracking-wider text-gray-700 border border-gray-300 hover:border-rose-400 transition-all duration-500 overflow-hidden bg-white/70 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                 >
                   <span className="relative z-10">Happy birthday again baby, I love you so much ❤️</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-rose-100 to-pink-100 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>

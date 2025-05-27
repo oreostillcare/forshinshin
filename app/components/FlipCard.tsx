@@ -148,11 +148,11 @@ export default function FlipCard({ photo, message, imageIndex, totalImages, onSw
   const handleMouseLeave = () => {
     setTilt({ x: 0, y: 0 });
   };  return (
-    <div className="w-full">
-      <div className="text-xs sm:text-sm text-gray-500 text-center mb-3 sm:mb-4 bg-white/40 backdrop-blur-sm rounded-full py-1 px-3 inline-block">
+    <div className="w-full flex flex-col items-center">
+      <div className="text-xs sm:text-sm text-gray-500 text-center mb-3 sm:mb-4 bg-white/40 backdrop-blur-sm rounded-full py-1 px-3">
         {isFlipped ? '✨ Message visible ✨' : '📸 Photo visible'}
       </div>
-        <div className="perspective-1000 relative w-full max-w-[280px] xs:max-w-[300px] sm:max-w-[340px] md:max-w-[380px] lg:max-w-[420px] xl:max-w-[450px] h-[20rem] xs:h-[22rem] sm:h-[24rem] md:h-[26rem] lg:h-[28rem] xl:h-[28rem] mx-auto flip-card-container">
+      <div className="perspective-1000 relative w-full max-w-[280px] xs:max-w-[300px] sm:max-w-[340px] md:max-w-[380px] lg:max-w-[420px] xl:max-w-[480px] 2xl:max-w-[520px] h-[18rem] xs:h-[20rem] sm:h-[22rem] md:h-[24rem] lg:h-[26rem] xl:h-[28rem] 2xl:h-[30rem] mx-auto flip-card-container">
         <div
           ref={cardRef}
           onClick={handleCardClick}
@@ -174,7 +174,7 @@ export default function FlipCard({ photo, message, imageIndex, totalImages, onSw
               ? 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)' 
               : 'transform 0.3s ease-out'
           }}
-        >          {/* Front - Photo - Improved design */}
+        >{/* Front - Photo - Improved design */}
           <div 
             className="flip-card-front absolute inset-0 rounded-2xl overflow-hidden border-[3px] border-white shadow-2xl bg-white"
             style={{ 
@@ -211,33 +211,40 @@ export default function FlipCard({ photo, message, imageIndex, totalImages, onSw
             <div className="absolute top-4 right-4">
               <div className="w-3 h-3 sm:w-4 sm:h-4 bg-rose-400 rounded-full animate-pulse shadow-lg"></div>
             </div>
-          </div>          {/* Back - Message - Improved design */}
+          </div>          {/* Back - Message - Improved design with better spacing */}
           <div 
-            className="flip-card-back absolute inset-0 rounded-2xl border-[3px] border-white shadow-2xl flex items-center justify-center p-6 sm:p-8 bg-gradient-to-br from-white via-rose-50/70 to-pink-50/50"
+            className="flip-card-back absolute inset-0 rounded-2xl border-[3px] border-white shadow-2xl flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-gradient-to-br from-white via-rose-50/70 to-pink-50/50"
             style={{ 
               transform: 'rotateY(180deg)', 
               backfaceVisibility: 'hidden',
               WebkitBackfaceVisibility: 'hidden'
             }}
           >
-            <div className="text-center space-y-4 sm:space-y-6 w-full">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full mx-auto flex items-center justify-center mb-5 sm:mb-8 shadow-xl">
-                <Heart className="text-white" size={typeof window !== 'undefined' && window.innerWidth < 640 ? 16 : 20} />
+            <div className="text-center space-y-3 sm:space-y-4 lg:space-y-5 w-full h-full flex flex-col justify-center max-h-full overflow-hidden">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full mx-auto flex items-center justify-center shadow-xl flex-shrink-0">
+                <Heart className="text-white" size={typeof window !== 'undefined' && window.innerWidth < 640 ? 14 : window.innerWidth < 1024 ? 16 : 18} />
               </div>
-              <AnimatePresence mode="wait">
-                <motion.p 
-                  key={`message-${imageIndex}`}
-                  className="text-gray-800 text-sm sm:text-base md:text-lg leading-relaxed font-normal tracking-wide px-2"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  {message}
-                </motion.p>
-              </AnimatePresence>
+              <div className="flex-1 flex items-center justify-center min-h-0">
+                <AnimatePresence mode="wait">
+                  <motion.p 
+                    key={`message-${imageIndex}`}
+                    className="text-gray-800 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed font-normal tracking-wide px-1 sm:px-2 overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-rose-200"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4 }}
+                    style={{ 
+                      maxHeight: 'calc(100% - 2rem)',
+                      overflowWrap: 'break-word',
+                      wordBreak: 'break-word'
+                    }}
+                  >
+                    {message}
+                  </motion.p>
+                </AnimatePresence>
+              </div>
               <motion.div 
-                className="text-gray-600 text-xs sm:text-sm font-medium mt-6 sm:mt-8 bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2.5 shadow-md mx-auto inline-block"
+                className="text-gray-600 text-xs sm:text-sm font-medium bg-white/70 backdrop-blur-sm rounded-xl px-3 py-2 shadow-md mx-auto flex-shrink-0"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
