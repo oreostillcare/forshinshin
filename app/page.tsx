@@ -7,8 +7,8 @@ import { FlipCard } from './components'
 
 // Sample photo URLs - replace with actual photos of ShinShin
 const photos = [
-  'https://images.unsplash.com/photo-1494790108755-2616c2b6b3a0?w=600&h=800&fit=crop&crop=face',
-  'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&h=800&fit=crop&crop=face',
+  'https://photos.app.goo.gl/Xu7C3KTHSTj1yGEk7',
+  'https://photos.app.goo.gl/Xu7C3KTHSTj1yGEk7',
   'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&h=800&fit=crop&crop=face',
   'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=600&h=800&fit=crop&crop=face'
 ]
