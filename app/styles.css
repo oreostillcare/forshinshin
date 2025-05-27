@@ -1,14 +1,141 @@
 html, body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow-x: hidden; /* Only prevent horizontal scrolling */
   height: 100%;
   width: 100%;
+  overflow-y: hidden; /* Prevent vertical scrolling at body level */
+}
+
+.scrollable {
+  overflow-y: auto; /* Allow vertical scrolling */
+  width: 100%;
+  height: 100%;
+}
+
+/* Add space at the bottom of scrollable containers to prevent audio player overlap */
+.min-h-screen {
+  height: 100vh; /* Full viewport height */
+  overflow-y: hidden; /* Prevent page scrolling */
+  position: relative; /* For proper positioning */
+  padding-bottom: 0; /* Remove padding since content will be scrollable */
+}
+
+/* Make glass card background more visible */
+.glass {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 50; /* Ensure it's above the music player */
+}
+
+/* Fixed square container with scrollable content */
+.square-container {
+  min-height: 600px;
+  max-height: 80vh;
+  height: 80vh; /* Fixed height */
+  overflow: hidden; /* Prevent container itself from scrolling */
+  position: relative; /* For proper positioning */
+}
+
+.scrollable-content {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(219, 112, 147, 0.5) rgba(255, 255, 255, 0.1);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  max-height: calc(100% - 4rem);
+  height: 100%;
+  padding-bottom: 1rem;
+}
+
+.secret-message-text {
+  text-align: left;
+  word-spacing: 0.05em;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+  overflow-wrap: break-word;
+  white-space: normal;
+  padding: 0 4px;
+}
+
+.secret-message-text p {
+  margin-bottom: 1.5em;
+  text-indent: 0.5em;
+}
+
+.scrollable-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollable-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+  background-color: rgba(219, 112, 147, 0.4);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.scrollable-content::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(219, 112, 147, 0.6);
+}
+
+/* Fix the secret message card and music player positioning */
+.fixed-card {
+  position: relative;
+  height: 75vh;
+  max-height: 750px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.music-player-container {
+  position: relative;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(219, 112, 147, 0.3);
+  z-index: 20;
 }
 
 .no-scroll {
   overflow: hidden;
-  position: fixed;
-  width: 100%;
-  height: 100%;
+}
+
+/* Fix for the secret view card */
+.fixed-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Fixed header for the scrollable content */
+.fixed-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+/* Make card content scrollable rather than full page */
+.card-container {
+  position: relative;
+  height: auto;
+  z-index: 10;
+}
+
+/* Prevent outer page scrolling */
+.no-scroll {
+  overflow: hidden;
 }

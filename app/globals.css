@@ -1,6 +1,22 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Gradient animation for the ShinShin name */
+.text-gradient-animate {
+  background: linear-gradient(45deg, #e11d48, #f43f5e, #fb7185, #f43f5e, #e11d48);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -341,6 +357,23 @@
   );
   background-size: 468px 100%;
   animation: shimmer 2s infinite;
+}
+
+/* Text gradient animation for the title */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.text-gradient-animate {
+  background: linear-gradient(45deg, #e11d48, #f43f5e, #fb7185, #f43f5e, #e11d48);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
 }
 
 /* 3D Card Effects */
@@ -1401,95 +1434,82 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Improved content layout for very large screens */
-@media (min-width: 1920px) {
-  .secret-message-container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .secret-message-container .glass {
-    padding: 4rem !important;
-  }
-  
-  .secret-message-container h2 {
-    font-size: 4rem !important;
-    margin-bottom: 3rem !important;
-  }
-  
-  .secret-message-container .text-content {
-    font-size: 1.5rem !important;
-    line-height: 1.8 !important;
-    max-width: 900px !important;
-  }
+/* Enhanced secret message styling */
+.glass {
+  transition: all 0.3s ease-in-out;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-/* Additional improvements for secret message layout */
-@media (min-height: 800px) {
-  .secret-message-container {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
+/* Better text formatting for secret message */
+.secret-message-text {
+  text-align: left;
+  word-spacing: 0.05em;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
-@media (min-height: 1000px) {
-  .secret-message-container {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
-  
-  .secret-message-container .glass {
-    max-height: calc(100vh - 16rem);
-  }
+.secret-message-text p {
+  margin-bottom: 1.5rem;
+  text-indent: 0.5rem;
 }
 
-@media (min-height: 1200px) {
-  .secret-message-container {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
-  
-  .secret-message-container .glass {
-    max-height: calc(100vh - 20rem);
-  }
-}
-
-/* Ensure music player doesn't interfere with content */
-.music-safe-zone {
-  padding-bottom: 120px;
-}
-
-@media (min-width: 1024px) {
-  .music-safe-zone {
-    padding-bottom: 140px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .music-safe-zone {
-    padding-bottom: 160px;
-  }
-}
-
-/* Better scrolling for secret message content */
-.secret-content-scroll {
+/* Improved scrollbar for secret message */
+.scrollable-content {
   scrollbar-width: thin;
-  scrollbar-color: rgba(244, 114, 182, 0.3) transparent;
+  scrollbar-color: rgba(244, 114, 182, 0.4) rgba(255, 255, 255, 0.1);
+  padding-right: 0.5rem;
 }
 
-.secret-content-scroll::-webkit-scrollbar {
+.scrollable-content::-webkit-scrollbar {
   width: 6px;
 }
 
-.secret-content-scroll::-webkit-scrollbar-track {
-  background: transparent;
+.scrollable-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
 }
 
-.secret-content-scroll::-webkit-scrollbar-thumb {
-  background-color: rgba(244, 114, 182, 0.3);
-  border-radius: 3px;
+.scrollable-content::-webkit-scrollbar-thumb {
+  background-color: rgba(244, 114, 182, 0.4);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.secret-content-scroll::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(244, 114, 182, 0.5);
+.scrollable-content::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(244, 114, 182, 0.6);
+}
+
+/* Responsive adjustments for message container */
+@media (min-width: 768px) {
+  .glass {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1),
+                0 10px 20px -10px rgba(251, 113, 133, 0.2);
+  }
+}
+
+@media (max-width: 767px) {
+  .glass {
+    padding: 1.25rem !important;
+  }
+  
+  h2 {
+    font-size: 1.75rem !important;
+    margin-bottom: 1.5rem !important;
+    padding-bottom: 1rem !important;
+  }
+  
+  .secret-message-text {
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+  }
+  
+  .scrollable-content {
+    padding-right: 0.25rem;
+  }
 }

@@ -7,17 +7,17 @@ import { FlipCard } from './components'
 
 // Sample photo URLs - replace with actual photos of ShinShin
 const photos = [
-  'https://photos.app.goo.gl/Xu7C3KTHSTj1yGEk7',
-  'https://photos.app.goo.gl/Xu7C3KTHSTj1yGEk7',
-  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&h=800&fit=crop&crop=face',
-  'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=600&h=800&fit=crop&crop=face'
+  '/images/PHOTO1.jpg',
+  '/images/PHOTO2.JPG',
+  '/images/PHOTO3.JPG',
+  '/images/PHOTO4.JPG'
 ]
 
 const messages = [
-  "My dearest ShinShin, you light up my world like no one else ever could. Every moment with you feels like a beautiful dream.",
-  "Your smile is my favorite sunrise, and your laugh is my favorite melody. You make everything better just by being you.",
-  "In a world full of temporary things, you are my forever. You're not just my love, you're my best friend and soulmate.",
-  "Every day I fall in love with you all over again. Thank you for being the most amazing person in my life. Happy Birthday, my love!"
+  "My dearest ShinShin, you light up my world like no one else ever could. Every moment with you feels like a beautiful dream come true. Your smile makes my heart skip a beat, and your love gives me strength to face each day with happiness and hope.",
+  "Your smile is my favorite sunrise, and your laugh is my favorite melody. You make everything better just by being yourself. The way you care for others, your gentle heart, and your beautiful soul make me fall in love with you more and more each day.",
+  "In a world full of temporary things, you are my forever and always. You are not just my love—you are my best friend, my confidant, my soulmate, and my greatest blessing. With you, I have found my home, my peace, and my happiness.",
+  "Every day I fall in love with you all over again. Thank you for being the most amazing, beautiful, and wonderful person in my life. You make me want to be the best version of myself. Happy Birthday, my love! Here's to our beautiful journey together! ❤️"
 ]
 
 const songs = [
@@ -187,17 +187,16 @@ export default function Home() {
         ))}
       </div>
     )
-  }  // Music Control Toast with Spotify Embed - Better positioned to avoid overlap
+  }  // Music Control Toast with Spotify Embed - Positioned at top to avoid overlap
   const MusicToast = () => (
     <motion.div
-      initial={{ x: 100, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ x: 100, opacity: 0 }}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -100, opacity: 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 lg:bottom-8 lg:right-8 xl:bottom-10 xl:right-10 z-40 pointer-events-auto"
-    >
-      <div className="spotify-player-wrapper relative">
-        <div className="absolute -inset-2 bg-white/25 backdrop-blur-lg rounded-3xl z-0 shadow-xl"></div>
+      className="fixed top-4 right-4 sm:top-6 sm:right-6 lg:top-8 lg:right-8 xl:top-10 xl:right-10 z-50 pointer-events-auto"
+    >      <div className="spotify-player-wrapper relative">
+        <div className="absolute -inset-1 xs:-inset-1.5 sm:-inset-1.5 md:-inset-1.5 lg:-inset-2 bg-white/25 backdrop-blur-lg rounded-3xl z-0 shadow-xl"></div>
         <div className="relative z-10 rounded-2xl overflow-hidden border border-white/50">
           <iframe
             src={songs[currentSong].embedUrl}
@@ -331,14 +330,12 @@ export default function Home() {
         </motion.div>
       )}
     </AnimatePresence>
-  );
-  // Render Sakura Petals globally
+  );  // Render Sakura Petals globally
   return (
-    <div className="relative h-screen overflow-hidden">
-      <SakuraPetals />
-        {currentView === 'landing' && (
+    <div className="relative h-screen overflow-hidden no-scroll">
+      <SakuraPetals />      {currentView === 'landing' && (
         <div 
-          className="h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 flex items-center justify-center relative overflow-hidden"
+          className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 flex items-center justify-center relative overflow-hidden py-8"
           onMouseMove={handleMouseMove}
         >
           {/* Enhanced background decorative elements */}
@@ -450,13 +447,13 @@ export default function Home() {
           ))}
         </div>
       )}      {currentView === 'slider' && (
-        <div className="h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-100 flex items-center justify-center relative overflow-hidden">
+        <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-100 flex items-center justify-center relative overflow-hidden py-8">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(255,182,193,0.15),transparent_60%)]"></div>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,105,180,0.1),transparent_60%)]"></div>
           <div className="absolute inset-0 audio-bg-blend"></div>
           <FloatingHearts />
           <FinalModal />
-            <div className="max-w-xl w-full text-center px-3 sm:px-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center">
+            <div className="max-w-xl w-full text-center px-3 sm:px-4 mx-auto my-4 flex flex-col items-center justify-center">
             <motion.div 
               className="flex flex-col items-center justify-center w-full"
               initial={{ opacity: 0 }}
@@ -537,90 +534,129 @@ export default function Home() {
         </div>
       )}      {currentView === 'secret' && (
         <div 
-          className="h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-100 flex items-center justify-center relative overflow-hidden"
+          className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-100 flex items-center justify-center relative overflow-hidden py-8"
           onMouseMove={handleMouseMove}
         >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,182,193,0.1),transparent_50%)]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,182,193,0.1),transparent_50%)]"></div>          
           <div className="absolute inset-0 audio-bg-blend"></div>
-          <FloatingHearts />          {/* Music toast for the secret message - Better positioned to avoid overlap */}          <motion.div
-            initial={{ x: 100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: 100, opacity: 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 lg:bottom-8 lg:right-8 xl:bottom-10 xl:right-10 z-40 pointer-events-auto"
-          >
-            <div className="spotify-player-wrapper relative">
-              <div className="absolute -inset-2 bg-white/25 backdrop-blur-lg rounded-3xl z-0 shadow-xl"></div>
-              <div className="relative z-10 rounded-2xl overflow-hidden border border-white/50">
-                <iframe
-                  src={secretSong.embedUrl}
-                  width="280"
-                  height="80"
-                  frameBorder="0"
-                  allowFullScreen
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                  className="relative z-10"
-                  style={{ borderRadius: '12px' }}
-                />
-              </div>
-            </div>
-          </motion.div>{/* Secret message content - Better responsive layout */}          <motion.div 
+          <FloatingHearts />
+          
+          {/* Secret message content - Improved layout with fixed header, music player inside card, and scrollable content */}
+          <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl w-full text-center px-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-          >
+            className="max-w-4xl w-full mx-auto text-center px-4 pt-4 pb-24 sm:pb-28 z-30"
+          >            
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="glass rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 xl:p-12 shadow-2xl border border-white/50 max-h-[80vh] overflow-y-auto"
+              className="glass rounded-2xl shadow-2xl border border-white/50 mb-10 overflow-hidden fixed-card"
+              style={{ 
+                width: "100%", 
+                maxWidth: "720px", 
+                margin: "0 auto",
+                height: "80vh", /* Fixed height */
+                maxHeight: "700px",
+                display: "flex",
+                flexDirection: "column"
+              }}
             >
-              <motion.h2 
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-gray-800 mb-6 sm:mb-8 lg:mb-10 xl:mb-12 tracking-wide"
+              {/* Header with Title */}              <motion.h2 
+                className="text-3xl sm:text-4xl md:text-5xl font-medium text-gray-800 tracking-wide py-6 bg-white/95 backdrop-blur-md border-b border-pink-200/60 text-center flex-shrink-0 shadow-sm z-10"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                My Dearest <span className="text-rose-600">ShinShin</span>
-              </motion.h2>
-              <motion.div 
-                className="text-sm sm:text-base lg:text-lg xl:text-xl text-gray-700 leading-relaxed font-light space-y-3 sm:space-y-4 lg:space-y-5 xl:space-y-6 text-left max-w-2xl xl:max-w-3xl mx-auto"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-              >
-                <p>
-                  On this special day, I want you to know that you are the most incredible person I've ever met. 
-                  Your kindness, your beauty, your laugh, your dreams — everything about you makes my world brighter.
-                </p>
-                <p>
-                  You're not just my girlfriend, you're my best friend, my inspiration, and my greatest blessing. 
-                  I love how you make the ordinary moments extraordinary, how you believe in me even when I don't believe in myself.
-                </p>
-                <p>
-                  I can't imagine a day without you in my life. You are my sunshine, my comfort, and my home.
-                </p>
-                <p className="text-rose-600 font-medium">
-                  Happy Birthday, my beautiful ShinShin. Here's to many more birthdays together, creating memories that will last forever.
-                </p>
-              </motion.div>
-              
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 }}
-                className="mt-6 sm:mt-8 lg:mt-10 xl:mt-12"
-              >
-                <button 
-                  onClick={() => setCurrentView('landing')}
-                  className="group relative px-6 sm:px-8 lg:px-10 xl:px-12 py-3 sm:py-4 text-sm sm:text-base lg:text-lg font-light tracking-wider text-gray-700 border border-gray-300 hover:border-rose-400 transition-all duration-500 overflow-hidden bg-white/70 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                My Dearest <span className="text-gradient-animate font-semibold">ShinShin</span>
+              </motion.h2>                <div className="scrollable-content flex-grow overflow-y-auto p-8 sm:p-10 lg:p-12 pt-6 pb-14" 
+                  style={{
+                    height: "calc(100% - 70px)", /* Account for header only now */
+                    overflowY: "auto"
+                  }}>
+                  <motion.div 
+                  className="secret-message-text text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed font-normal space-y-6 mx-auto max-w-3xl"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
                 >
-                  <span className="relative z-10">Happy birthday again baby, I love you so much ❤️</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-rose-100 to-pink-100 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                </button>
-              </motion.div>
+                  <p>
+                    On this special day, I want you to know that you are the most incredible person I have ever met. 
+                    Your kindness radiates warmth that touches everyone around you. Your beauty, both inside and out, 
+                    takes my breath away every single day. Your infectious laugh fills my heart with joy, and your
+                    dreams inspire me to be a better person.
+                  </p>
+                  <p>
+                    You are not just my girlfriend—you are my best friend, my greatest inspiration, and my most 
+                    precious blessing. I love how you transform ordinary moments into extraordinary memories. 
+                    The way you believe in me, especially when I struggle to believe in myself, gives me strength 
+                    and courage to face anything life brings our way.
+                  </p>
+                  <p>
+                    I cannot imagine a single day without you in my life. You are my sunshine on cloudy days, 
+                    my comfort during difficult times, and my home wherever we go. With you, I have found my 
+                    forever person, my soulmate, my everything.
+                  </p>
+                  <p className="text-rose-600 font-medium text-lg sm:text-xl">
+                    Happy Birthday, my beautiful, amazing, wonderful ShinShin. Here is to many more birthdays 
+                    together, creating countless memories that will last forever and ever. I love you more than 
+                    words can express! ❤️
+                  </p>
+                </motion.div>                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 }}
+                  className="mt-12 pb-4 flex flex-col items-center justify-center gap-6"
+                >
+                  <h3 className="text-xl font-medium text-gray-700 mb-2">Are you done reading?</h3>
+                  
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full">
+                    <button 
+                      onClick={() => setCurrentView('landing')}
+                      className="secret-button group relative px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-medium tracking-wider text-gray-700 border border-gray-300 hover:border-rose-400 transition-all duration-300 overflow-hidden bg-white/80 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 w-full sm:w-auto"
+                    >
+                      <span className="relative z-10 flex items-center justify-center gap-2">
+                        <Heart size={16} className="text-rose-500" />
+                        <span>Back to Start</span>
+                      </span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-rose-100 to-pink-100 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                    </button>
+                    
+                    <button 
+                      onClick={() => setCurrentView('slider')}
+                      className="secret-button group relative px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-medium tracking-wider text-white border border-rose-400 transition-all duration-300 overflow-hidden bg-gradient-to-r from-rose-400 to-pink-500 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 w-full sm:w-auto"
+                    >
+                      <span className="relative z-10 flex items-center justify-center gap-2">
+                        <span>View Photo Memories Again</span>
+                      </span>
+                    </button>
+                  </div>                </motion.div>
+              </div>
+            </motion.div>
+            
+            {/* Music Player moved outside the card */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="music-player-container flex-shrink-0 mt-6"
+            >
+              <div className="spotify-player-wrapper relative max-w-sm mx-auto">
+                <div className="relative z-10 rounded-xl overflow-hidden border border-pink-200/50">
+                  <iframe
+                    src={secretSong.embedUrl}
+                    width="100%"
+                    height="80"
+                    frameBorder="0"
+                    allowFullScreen
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                    className="relative z-10"
+                    style={{ borderRadius: '12px' }}
+                  />
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         </div>

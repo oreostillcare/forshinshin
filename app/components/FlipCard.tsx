@@ -148,11 +148,10 @@ export default function FlipCard({ photo, message, imageIndex, totalImages, onSw
   const handleMouseLeave = () => {
     setTilt({ x: 0, y: 0 });
   };  return (
-    <div className="w-full">
-      <div className="text-xs sm:text-sm text-gray-500 text-center mb-2 sm:mb-3">
-        {isFlipped ? '✨ Message visible ✨' : '📸 Photo visible'}
+    <div className="w-full">      <div className="text-xs text-gray-500 text-center mb-2">
+        {isFlipped ? '✨ Message visible ✨' : 'Tap card to flip • Swipe to navigate'}
       </div>
-        <div className="perspective-1000 relative w-full max-w-[260px] xs:max-w-[280px] sm:max-w-[320px] md:max-w-[380px] lg:max-w-[420px] xl:max-w-[450px] h-[18rem] xs:h-[20rem] sm:h-[22rem] md:h-[24rem] lg:h-[26rem] xl:h-[28rem] mx-auto flip-card-container" style={{ margin: '0 auto' }}>
+        <div className="perspective-1000 relative w-full aspect-square mx-auto flip-card-container" style={{ maxWidth: '280px', margin: '0 auto' }}>
         <div
           ref={cardRef}
           onClick={handleCardClick}
@@ -175,9 +174,8 @@ export default function FlipCard({ photo, message, imageIndex, totalImages, onSw
               : 'transform 0.3s ease-out'
           }}
         >
-          {/* Front - Photo */}
-          <div 
-            className="flip-card-front absolute inset-0 rounded-lg xs:rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden border-2 xs:border-2 sm:border-3 lg:border-4 border-white shadow-lg xs:shadow-xl sm:shadow-2xl bg-white"
+          {/* Front - Photo */}          <div 
+            className="flip-card-front absolute inset-0 rounded-xl overflow-hidden border border-white shadow-lg bg-white"
             style={{ 
               backfaceVisibility: 'hidden',
               WebkitBackfaceVisibility: 'hidden'
@@ -212,36 +210,53 @@ export default function FlipCard({ photo, message, imageIndex, totalImages, onSw
             <div className="absolute top-2 xs:top-3 sm:top-4 lg:top-6 right-2 xs:right-3 sm:right-4 lg:right-6">
               <div className="w-2 h-2 xs:w-2.5 xs:h-2.5 sm:w-3 sm:h-3 lg:w-4 lg:h-4 bg-rose-400 rounded-full animate-pulse shadow-lg"></div>
             </div>
-          </div>          {/* Back - Message */}
-          <div 
-            className="flip-card-back absolute inset-0 rounded-lg xs:rounded-xl sm:rounded-2xl lg:rounded-3xl border-2 xs:border-2 sm:border-3 lg:border-4 border-white shadow-lg xs:shadow-xl sm:shadow-2xl flex items-center justify-center p-3 xs:p-4 sm:p-6 lg:p-8 xl:p-10 bg-gradient-to-br from-white via-rose-50/50 to-pink-50/30"
+          </div>          {/* Back - Message */}          <div 
+            className="flip-card-back absolute inset-0 rounded-xl border border-white shadow-lg flex items-center justify-center p-3 bg-gradient-to-br from-white via-rose-50/50 to-pink-50/30"
             style={{ 
               transform: 'rotateY(180deg)', 
               backfaceVisibility: 'hidden',
               WebkitBackfaceVisibility: 'hidden'
             }}
-          >
-            <div className="text-center space-y-2 xs:space-y-3 sm:space-y-4 lg:space-y-6 w-full">
-              <div className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full mx-auto flex items-center justify-center mb-3 xs:mb-4 sm:mb-6 lg:mb-8 shadow-lg">
-                <Heart className="text-white" size={typeof window !== 'undefined' && window.innerWidth < 640 ? 14 : typeof window !== 'undefined' && window.innerWidth < 1024 ? 16 : 18} />
+          ><div className="text-center space-y-2 w-full">
+              <div className="w-8 h-8 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full mx-auto flex items-center justify-center mb-2 shadow-md">
+                <Heart className="text-white" size={14} />
               </div>
-              <AnimatePresence mode="wait">
-                <motion.p 
-                  key={`message-${imageIndex}`}
-                  className="text-gray-800 text-xs xs:text-sm sm:text-base lg:text-lg leading-relaxed font-light tracking-wide px-1 xs:px-2 sm:px-0"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.4 }}
+              
+              <AnimatePresence mode="wait">                <motion.div
+                  key={`message-container-${imageIndex}`}
+                  className="scrollable-content"
+                  style={{ 
+                    maxHeight: 'calc(100% - 4rem)', 
+                    height: 'auto',
+                    overflowY: 'auto',
+                    padding: '0 4px'
+                  }}
                 >
-                  {message}
-                </motion.p>
+                  <motion.p 
+                    key={`message-${imageIndex}`}
+                    className="text-gray-800 text-sm leading-relaxed font-normal tracking-wide"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4 }}
+                    style={{ 
+                      overflowWrap: 'break-word',
+                      wordBreak: 'break-word',
+                      textAlign: 'justify',
+                      fontSize: '0.875rem',
+                      lineHeight: '1.5'
+                    }}
+                  >
+                    {message}
+                  </motion.p>
+                </motion.div>
               </AnimatePresence>
-              <motion.p 
-                className="text-gray-500 text-[10px] xs:text-xs sm:text-sm font-light mt-3 xs:mt-4 sm:mt-6 lg:mt-8 bg-white/60 backdrop-blur-sm rounded-full px-2 xs:px-3 sm:px-4 lg:px-6 py-1 xs:py-1 sm:py-1.5 lg:py-2"
+                <motion.p 
+                className="text-gray-500 text-xs font-light mt-2 bg-white/60 backdrop-blur-sm rounded-full px-2 py-1"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
+                style={{ width: 'fit-content', margin: '0.5rem auto 0' }}
               >
                 {imageIndex < totalImages - 1 ? '← Swipe for next →' : '← Swipe for surprise →'}
               </motion.p>
