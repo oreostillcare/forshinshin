@@ -14,10 +14,10 @@ const photos = [
 ]
 
 const messages = [
-  "My dearest ShinShin, you light up my world like no one else ever could. Every moment with you feels like a beautiful dream come true. Your smile makes my heart skip a beat, and your love gives me strength to face each day with happiness and hope.",
-  "Your smile is my favorite sunrise, and your laugh is my favorite melody. You make everything better just by being yourself. The way you care for others, your gentle heart, and your beautiful soul make me fall in love with you more and more each day.",
-  "In a world full of temporary things, you are my forever and always. You are not just my love—you are my best friend, my confidant, my soulmate, and my greatest blessing. With you, I have found my home, my peace, and my happiness.",
-  "Every day I fall in love with you all over again. Thank you for being the most amazing, beautiful, and wonderful person in my life. You make me want to be the best version of myself. Happy Birthday, my love! Here's to our beautiful journey together! ❤️"
+  "This is from when we first met. You looked so beautiful and I knew right away that you were someone I would risk everything for. I really admire you baby. I want to be with you every single day.",
+  "This picture reminds me that my happiness comes from you. You look so beautiful when you smile my shinshin. This is one of my favorite pictures of you smiling. You are my only one and my everything.",
+  "This is also one of my favorites. You have this look of love in your eyes and I love it so much. If life was a movie then you're the best part.",
+  "Thank you baby for everything. There is a message when you swipe like a message in a bottle."
 ]
 
 const songs = [
@@ -186,18 +186,21 @@ export default function Home() {
           />
         ))}
       </div>
-    )
-  }  // Music Control Toast with Spotify Embed - Positioned exactly where indicated
+    )  }  
+  
+  // Music Control Toast with Spotify Embed - Fixed Position for All Screen Sizes
   const MusicToast = () => (
     <motion.div
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: 100, opacity: 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className="fixed bottom-[12rem] sm:bottom-[12rem] inset-x-0 mx-auto max-w-[250px] xs:max-w-[280px] sm:max-w-[320px] z-50 pointer-events-auto"
-    ><div className="spotify-player-wrapper relative mx-auto">
+      className="fixed bottom-0 inset-x-0 mx-auto z-50 pointer-events-auto mb-4 sm:mb-6"
+    >
+      <div className="spotify-player-wrapper relative mx-auto">
         <div className="absolute -inset-1 bg-[#162B37]/90 backdrop-blur-md rounded-xl z-0 shadow-xl"></div>
-        <div className="relative z-10 rounded-xl overflow-hidden border border-white/10">          <iframe
+        <div className="relative z-10 rounded-xl overflow-hidden border border-white/10">
+          <iframe
             src={songs[currentSong].embedUrl}
             width="100%"
             height="80"
@@ -205,8 +208,8 @@ export default function Home() {
             allowFullScreen
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
-            className="relative z-10"
-            style={{ borderRadius: '12px', maxWidth: '100%' }}
+            className="spotify-iframe"
+            style={{ borderRadius: '12px' }}
           />
         </div>
       </div>
@@ -291,7 +294,7 @@ export default function Home() {
               transition={{ delay: 0.2, duration: 0.6 }}
               className="text-2xl sm:text-3xl font-medium text-gray-800 mb-4 sm:mb-5 tracking-wide"
             >
-              One more thing...
+              Just one more thing...
             </motion.h3>
             
             <motion.p
@@ -300,7 +303,7 @@ export default function Home() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="text-base sm:text-lg text-gray-600 mb-8 sm:mb-10 leading-relaxed px-2"
             >
-              There's something special I want to share with you, my dear <span className="text-rose-600 font-medium">ShinShin</span> ✨
+              There's something special I want to share with you, my  <span className="text-rose-600 font-medium">baby</span> 
             </motion.p>
             
             <motion.button
@@ -321,7 +324,7 @@ export default function Home() {
             >
               <span className="relative z-10 flex items-center justify-center space-x-3">
                 <Heart className="w-5 h-5 sm:w-6 sm:h-6" />
-                <span>Show me! 💕</span>
+                <span>Continue</span>
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
             </motion.button>
@@ -373,7 +376,7 @@ export default function Home() {
               <h1 className="text-3xl md:text-5xl xl:text-6xl font-extralight text-gray-800 mb-2 sm:mb-4 tracking-wider leading-tight">
                 Happy 20th
               </h1>              <h2 className="text-5xl md:text-7xl xl:text-8xl font-light text-transparent bg-gradient-to-r from-rose-600 via-pink-600 to-rose-500 bg-clip-text mb-6 sm:mb-8 tracking-wide">
-                My ShinShin
+                My Baby!!
               </h2>
               <motion.p 
                 className="text-base sm:text-lg md:text-xl text-gray-600 font-light tracking-wide max-w-2xl mx-auto leading-relaxed px-4"
@@ -381,9 +384,9 @@ export default function Home() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.2, duration: 0.8 }}
               >
-                A special collection of memories and love letters, 
+                A simple website to celebrate your special day, 
                 <br className="hidden sm:block" />
-                created just for you on your beautiful day
+                 I hope you like it.
               </motion.p>
             </motion.div>
 
@@ -398,7 +401,7 @@ export default function Home() {
               >
                 <span className="relative z-10 flex items-center space-x-2">
                   <Heart className="w-4 h-4" />
-                  <span>Begin Your Journey</span>
+                  <span>Click Me</span>
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-rose-400 via-pink-500 to-rose-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
               </button>
@@ -465,7 +468,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                Our Beautiful Memories
+                To the love of my life, my Pretty Baby <span className="text-gradient-animate font-semibold">Shinshin</span>
               </motion.h2>
               
               <motion.p
@@ -473,7 +476,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}              >
-                Tap card to flip • Swipe to navigate
+              
               </motion.p>                <div className="card-container mx-auto mb-4">
                 <FlipCard 
                   photo={photos[currentImageIndex]}
@@ -567,52 +570,52 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                My Dearest <span className="text-gradient-animate font-semibold">ShinShin</span>
+                To my Pretty Baby <span className="text-gradient-animate font-semibold">Shinshin</span>
               </motion.h2>                <div className="scrollable-content flex-grow overflow-y-auto p-8 sm:p-10 lg:p-12 pt-6 pb-14" 
                   style={{
                     height: "calc(100% - 70px)", /* Account for header only now */
                     overflowY: "auto"
-                  }}>
-                  <motion.div 
+                  }}>                  <motion.div 
                   className="secret-message-text text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed font-normal space-y-6 mx-auto max-w-3xl"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.4 }}
-                >
-                  <p>
-                    On this special day, I want you to know that you are the most incredible person I have ever met. 
-                    Your kindness radiates warmth that touches everyone around you. Your beauty, both inside and out, 
-                    takes my breath away every single day. Your infectious laugh fills my heart with joy, and your
-                    dreams inspire me to be a better person.
+                >                  <p className="text-center whitespace-pre-line">
+                    HAPPY 20TH BIRTHDAY MY PRETTY BABY! I wanted to make this really special for you pretty baby. I hope this small effort makes you smile, feel loved, and make your birthday memorable.
+                    
+                    Happy happy birthday to the most amazing girlfriend in the whole world. I wrote this while watching The Last of Us and it was so hard because I was scared you might catch me typing this surprise for you.
+                    
+                    Last year I was not with you on your birthday and it made me really sad but now I am here as your boyfriend and I am so incredibly happy.
+                  </p>                  <p className="text-center whitespace-pre-line">
+                    You are 20 now and I feel so blessed that I get to celebrate this special day with you. This past year with you has been the absolute best year of my life.
+                    
+                    You make every single day brighter just by existing in my world. Being with you feels like a dream that I never want to wake up from.
+                  </p>                  <p className="text-center whitespace-pre-line">
+                    When I am with you all my problems seem to disappear. You have this amazing way of making everything better just by being there.
+                    
+                    Through all our fights and hardships thank you for staying with me and for loving me even when things get tough. Everything I do feels worth it when I am with you.
+                    
+                    I love how you laugh at my silly jokes even when they are terrible. I love how much you care about me always and how kind your heart is. I love how beautiful you look when you first wake up in the morning. No makeup, hair a mess, and still the most beautiful person in the world to me.
+                  </p>                  <p className="text-center whitespace-pre-line">
+                    I promise to fill this new chapter of your life with so much love and happiness. Thank you for choosing me to be part of your beautiful story.
+                    
+                    I cannot wait to create so many more precious memories with you. Once again happy 20th birthday to my beautiful girlfriend.
+                    
+                    My best wish for you is to become a successful nurse in the future and wag na simangot lagi hahaha. Take care always because I am here for you always.
+                    
+                    You are my heart and soul and I truly would not last a day without you my pretty baby. I love you so much.
                   </p>
-                  <p>
-                    You are not just my girlfriend—you are my best friend, my greatest inspiration, and my most 
-                    precious blessing. I love how you transform ordinary moments into extraordinary memories. 
-                    The way you believe in me, especially when I struggle to believe in myself, gives me strength 
-                    and courage to face anything life brings our way.
-                  </p>
-                  <p>
-                    I cannot imagine a single day without you in my life. You are my sunshine on cloudy days, 
-                    my comfort during difficult times, and my home wherever we go. With you, I have found my 
-                    forever person, my soulmate, my everything.
-                  </p>
-                  <p className="text-rose-600 font-medium text-lg sm:text-xl">
-                    Happy Birthday, my beautiful, amazing, wonderful ShinShin. Here is to many more birthdays 
-                    together, creating countless memories that will last forever and ever. I love you more than 
-                    words can express! ❤️
-                  </p>
-                </motion.div>                <motion.div
+                </motion.div><motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8 }}
                   className="mt-12 pb-4 flex flex-col items-center justify-center gap-6"
                 >
                   <h3 className="text-xl font-medium text-gray-700 mb-2">Are you done reading?</h3>
-                  
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full">
+                    <div className="flex flex-row items-center justify-center gap-4 sm:gap-6 w-full max-w-lg mx-auto">
                     <button 
                       onClick={() => setCurrentView('landing')}
-                      className="secret-button group relative px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-medium tracking-wider text-gray-700 border border-gray-300 hover:border-rose-400 transition-all duration-300 overflow-hidden bg-white/80 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 w-full sm:w-auto"
+                      className="secret-button group relative px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base font-medium tracking-wider text-gray-700 border border-gray-300 hover:border-rose-400 transition-all duration-300 overflow-hidden bg-white/80 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex-1"
                     >
                       <span className="relative z-10 flex items-center justify-center gap-2">
                         <Heart size={16} className="text-rose-500" />
@@ -623,24 +626,23 @@ export default function Home() {
                     
                     <button 
                       onClick={() => setCurrentView('slider')}
-                      className="secret-button group relative px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-medium tracking-wider text-white border border-rose-400 transition-all duration-300 overflow-hidden bg-gradient-to-r from-rose-400 to-pink-500 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 w-full sm:w-auto"
+                      className="secret-button group relative px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base font-medium tracking-wider text-white border border-rose-400 transition-all duration-300 overflow-hidden bg-gradient-to-r from-rose-400 to-pink-500 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex-1"
                     >
                       <span className="relative z-10 flex items-center justify-center gap-2">
-                        <span>View Photo Memories Again</span>
+                        <span>View Photos Again</span>
                       </span>
                     </button>
-                  </div>                </motion.div>
+                  </div></motion.div>
               </div>
             </motion.div>
-            
-            {/* Music Player moved outside the card */}
+              {/* Music Player moved outside the card */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
               className="music-player-container flex-shrink-0 mt-6"
             >
-              <div className="spotify-player-wrapper relative max-w-sm mx-auto">
+              <div className="spotify-player-wrapper relative mx-auto">
                 <div className="relative z-10 rounded-xl overflow-hidden border border-pink-200/50">
                   <iframe
                     src={secretSong.embedUrl}
@@ -650,7 +652,7 @@ export default function Home() {
                     allowFullScreen
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                     loading="lazy"
-                    className="relative z-10"
+                    className="spotify-iframe"
                     style={{ borderRadius: '12px' }}
                   />
                 </div>

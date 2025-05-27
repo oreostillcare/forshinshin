@@ -1,0 +1,108 @@
+/* Spotify player responsive fixes */
+.spotify-player-wrapper {
+  max-width: 300px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
+.spotify-iframe {
+  width: 100%;
+  border-radius: 12px;
+  max-width: 100%;
+  display: block;
+}
+
+/* Proper bottom positioning for consistent display across devices */
+@media (max-width: 640px) {
+  .spotify-player-wrapper {
+    max-width: 260px;
+    transform-origin: center bottom;
+    transform: scale(0.92);
+  }
+}
+
+@media (max-width: 480px) {
+  .spotify-player-wrapper {
+    transform-origin: center bottom;
+    max-width: 80%;
+    transform: scale(0.85);
+    position: relative;
+  }
+  
+  .spotify-iframe {
+    width: 100% !important;
+    min-width: unset !important;
+    height: 75px !important; /* Reduce height slightly */
+  }
+}
+
+@media (max-width: 380px) {
+  .spotify-player-wrapper {
+    max-width: 240px;
+    transform: scale(0.8);
+  }
+}
+
+/* iPhone SE and other small devices */
+@media screen and (max-width: 375px) {
+  .spotify-player-wrapper {
+    transform-origin: center bottom;
+    max-width: 220px;
+    transform: scale(0.75);
+    position: relative;
+  }
+}
+
+/* Fix for iPhone models */
+@media screen and (device-width: 390px), 
+       screen and (device-width: 428px), 
+       screen and (device-width: 414px) {
+  .spotify-player-wrapper {
+    transform-origin: center bottom;
+    max-width: 85%;
+    transform: scale(0.82);
+    position: relative;
+  }
+}
+
+/* Ensure proper spacing below content to avoid overlap with player */
+@media (max-width: 640px) {
+  .card-container {
+    margin-bottom: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-container {
+    margin-bottom: 100px;
+  }
+}
+
+/* Additional fixes for specific device models */
+/* Fix for most mobile screens */
+@media screen and (max-width: 767px) {
+  .fixed.bottom-0 {
+    bottom: env(safe-area-inset-bottom, 0.5rem);
+  }
+}
+
+/* Consistency on orientation change */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  .spotify-player-wrapper {
+    max-width: 260px;
+  }
+  
+  .card-container {
+    margin-bottom: 100px;
+  }
+}
+
+/* Fix iOS Safari issues */
+@supports (-webkit-touch-callout: none) {
+  .spotify-player-wrapper {
+    /* iOS Safari specific fix */
+    position: relative;
+    bottom: 0;
+  }
+}
