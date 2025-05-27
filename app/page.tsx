@@ -187,27 +187,26 @@ export default function Home() {
         ))}
       </div>
     )
-  }  // Music Control Toast with Spotify Embed - Positioned at top to avoid overlap
+  }  // Music Control Toast with Spotify Embed - Positioned exactly where indicated
   const MusicToast = () => (
     <motion.div
-      initial={{ y: -100, opacity: 0 }}
+      initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      exit={{ y: -100, opacity: 0 }}
+      exit={{ y: 100, opacity: 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className="fixed top-4 right-4 sm:top-6 sm:right-6 lg:top-8 lg:right-8 xl:top-10 xl:right-10 z-50 pointer-events-auto"
-    >      <div className="spotify-player-wrapper relative">
-        <div className="absolute -inset-1 xs:-inset-1.5 sm:-inset-1.5 md:-inset-1.5 lg:-inset-2 bg-white/25 backdrop-blur-lg rounded-3xl z-0 shadow-xl"></div>
-        <div className="relative z-10 rounded-2xl overflow-hidden border border-white/50">
-          <iframe
+      className="fixed bottom-[12rem] sm:bottom-[12rem] inset-x-0 mx-auto max-w-[250px] xs:max-w-[280px] sm:max-w-[320px] z-50 pointer-events-auto"
+    ><div className="spotify-player-wrapper relative mx-auto">
+        <div className="absolute -inset-1 bg-[#162B37]/90 backdrop-blur-md rounded-xl z-0 shadow-xl"></div>
+        <div className="relative z-10 rounded-xl overflow-hidden border border-white/10">          <iframe
             src={songs[currentSong].embedUrl}
-            width="280"
+            width="100%"
             height="80"
             frameBorder="0"
             allowFullScreen
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
             className="relative z-10"
-            style={{ borderRadius: '12px' }}
+            style={{ borderRadius: '12px', maxWidth: '100%' }}
           />
         </div>
       </div>
@@ -527,9 +526,8 @@ export default function Home() {
               >
                 <p>{currentImageIndex + 1} of {photos.length}</p>
               </motion.div>
-            </motion.div>
-          </div>
-            {/* Music toast positioned in lower right - Better responsive positioning */}
+            </motion.div>          </div>
+          {/* Music toast positioned in lower right - Better responsive positioning */}
           <MusicToast />
         </div>
       )}      {currentView === 'secret' && (
