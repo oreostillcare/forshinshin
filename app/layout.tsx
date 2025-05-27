@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import "./styles.css";
 
 const poppins = Poppins({
   weight: ['300', '400', '500', '600', '700'],
@@ -24,7 +25,7 @@ export default function RootLayout({
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
       </head>
       <body
-        className={`${poppins.variable} antialiased`}
+        className={`${poppins.variable} antialiased no-scroll`}
         style={{ fontFamily: 'var(--font-poppins)' }}
       >
         {children}

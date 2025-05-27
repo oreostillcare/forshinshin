@@ -25,25 +25,25 @@ const songs = [
     title: "Be With You", 
     artist: "The Ridleys", 
     spotifyId: "5sGZetzV9JUZCn8WkfgDEf",
-    embedUrl: "https://open.spotify.com/embed/track/5sGZetzV9JUZCn8WkfgDEf?utm_source=generator"
+    embedUrl: "https://open.spotify.com/embed/track/5sGZetzV9JUZCn8WkfgDEf?utm_source=generator&t=15"
   },
   { 
     title: "The Only Exception", 
     artist: "Paramore", 
     spotifyId: "7JIuqL4ZqkpfGKQhYlrirs",
-    embedUrl: "https://open.spotify.com/embed/track/7JIuqL4ZqkpfGKQhYlrirs?utm_source=generator"
+    embedUrl: "https://open.spotify.com/embed/track/7JIuqL4ZqkpfGKQhYlrirs?utm_source=generator&t=30"
   },
   { 
     title: "Best Part", 
     artist: "Daniel Caesar ft. H.E.R.", 
     spotifyId: "1Q7EgiMOuwDcB0PJC6AzON",
-    embedUrl: "https://open.spotify.com/embed/track/1Q7EgiMOuwDcB0PJC6AzON?utm_source=generator"
+    embedUrl: "https://open.spotify.com/embed/track/1Q7EgiMOuwDcB0PJC6AzON?utm_source=generator&t=45"
   },
   { 
     title: "Picture Perfect", 
     artist: "New Track", 
     spotifyId: "3z6XUommYDWPHeFhmhhT6j",
-    embedUrl: "https://open.spotify.com/embed/track/3z6XUommYDWPHeFhmhhT6j?utm_source=generator"
+    embedUrl: "https://open.spotify.com/embed/track/3z6XUommYDWPHeFhmhhT6j?utm_source=generator&t=20"
   }
 ]
 
@@ -194,7 +194,7 @@ export default function Home() {
       animate={{ x: 0, opacity: 1 }}
       exit={{ x: 100, opacity: 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 lg:bottom-8 lg:right-8 xl:bottom-10 xl:right-10 z-40"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 lg:bottom-8 lg:right-8 xl:bottom-10 xl:right-10 z-40 pointer-events-auto"
     >
       <div className="spotify-player-wrapper relative">
         <div className="absolute -inset-2 bg-white/25 backdrop-blur-lg rounded-3xl z-0 shadow-xl"></div>
@@ -332,15 +332,13 @@ export default function Home() {
       )}
     </AnimatePresence>
   );
-
   // Render Sakura Petals globally
   return (
-    <div className="relative">
+    <div className="relative h-screen overflow-hidden">
       <SakuraPetals />
-      
-      {currentView === 'landing' && (
+        {currentView === 'landing' && (
         <div 
-          className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 flex items-center justify-center p-4 relative overflow-hidden"
+          className="h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 flex items-center justify-center relative overflow-hidden"
           onMouseMove={handleMouseMove}
         >
           {/* Enhanced background decorative elements */}
@@ -378,8 +376,7 @@ export default function Home() {
             >
               <h1 className="text-3xl md:text-5xl xl:text-6xl font-extralight text-gray-800 mb-2 sm:mb-4 tracking-wider leading-tight">
                 Happy 20th
-              </h1>
-              <h2 className="text-5xl md:text-7xl xl:text-8xl font-light text-transparent bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 bg-clip-text mb-6 sm:mb-8 tracking-wide">
+              </h1>              <h2 className="text-5xl md:text-7xl xl:text-8xl font-light text-transparent bg-gradient-to-r from-rose-600 via-pink-600 to-rose-500 bg-clip-text mb-6 sm:mb-8 tracking-wide">
                 My ShinShin
               </h2>
               <motion.p 
@@ -399,16 +396,15 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.8, duration: 0.8 }}
               className="mb-8 sm:mb-12"
-            >
-              <button 
+            >              <button 
                 onClick={() => setCurrentView('slider')}
-                className="group relative px-6 sm:px-8 py-3 sm:py-4 text-base md:text-lg font-medium tracking-wide text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-500 rounded-xl shadow-lg hover:shadow-purple-300/30 transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] overflow-hidden"
+                className="group relative px-6 sm:px-8 py-3 sm:py-4 text-base md:text-lg font-medium tracking-wide text-white bg-gradient-to-r from-rose-500 via-pink-500 to-rose-400 rounded-xl shadow-lg hover:shadow-pink-300/30 transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] overflow-hidden"
               >
                 <span className="relative z-10 flex items-center space-x-2">
                   <Heart className="w-4 h-4" />
                   <span>Begin Your Journey</span>
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-500 to-indigo-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-rose-400 via-pink-500 to-rose-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
               </button>
             </motion.div>
 
@@ -454,16 +450,15 @@ export default function Home() {
           ))}
         </div>
       )}      {currentView === 'slider' && (
-        <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-100 flex items-center justify-center relative overflow-hidden">
+        <div className="h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-100 flex items-center justify-center relative overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(255,182,193,0.15),transparent_60%)]"></div>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,105,180,0.1),transparent_60%)]"></div>
           <div className="absolute inset-0 audio-bg-blend"></div>
           <FloatingHearts />
           <FinalModal />
-          
-          <div className="max-w-xl w-full text-center px-4 pt-4 pb-20 sm:pb-24"> {/* Added bottom padding to prevent overlap */}
+            <div className="max-w-xl w-full text-center px-3 sm:px-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center">
             <motion.div 
-              className="flex flex-col items-center justify-center h-full"
+              className="flex flex-col items-center justify-center w-full"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
@@ -481,12 +476,9 @@ export default function Home() {
                 className="text-sm sm:text-base text-gray-500 font-light mb-8"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
+                transition={{ duration: 0.6, delay: 0.2 }}              >
                 Tap card to flip • Swipe to navigate
-              </motion.p>
-              
-              <div className="card-container mx-auto mb-8 sm:mb-10">
+              </motion.p>                <div className="card-container mx-auto mb-4">
                 <FlipCard 
                   photo={photos[currentImageIndex]}
                   message={messages[currentImageIndex]}
@@ -494,11 +486,8 @@ export default function Home() {
                   totalImages={photos.length}
                   onSwipe={handleSwipe}
                 />
-              </div>
-              
-              {/* Navigation Indicators - Better positioned with less bottom spacing */}
-              <motion.div 
-                className="flex items-center justify-center space-x-4 mt-4 sm:mt-6 mb-4 sm:mb-6"
+              </div>{/* Navigation Indicators - Better positioned with no spacing */}              <motion.div 
+                className="flex items-center justify-center space-x-4 mt-2 mb-0"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8 }}
@@ -546,22 +535,19 @@ export default function Home() {
             {/* Music toast positioned in lower right - Better responsive positioning */}
           <MusicToast />
         </div>
-      )}
-
-      {currentView === 'secret' && (
+      )}      {currentView === 'secret' && (
         <div 
-          className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-100 flex items-center justify-center p-4 relative overflow-hidden"
+          className="h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-100 flex items-center justify-center relative overflow-hidden"
           onMouseMove={handleMouseMove}
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,182,193,0.1),transparent_50%)]"></div>
           <div className="absolute inset-0 audio-bg-blend"></div>
-          <FloatingHearts />          {/* Music toast for the secret message - Better positioned to avoid overlap */}
-          <motion.div
+          <FloatingHearts />          {/* Music toast for the secret message - Better positioned to avoid overlap */}          <motion.div
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: 100, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 lg:bottom-8 lg:right-8 xl:bottom-10 xl:right-10 z-40"
+            className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 lg:bottom-8 lg:right-8 xl:bottom-10 xl:right-10 z-40 pointer-events-auto"
           >
             <div className="spotify-player-wrapper relative">
               <div className="absolute -inset-2 bg-white/25 backdrop-blur-lg rounded-3xl z-0 shadow-xl"></div>
@@ -579,18 +565,17 @@ export default function Home() {
                 />
               </div>
             </div>
-          </motion.div>{/* Secret message content - Better responsive layout */}
-          <motion.div 
+          </motion.div>{/* Secret message content - Better responsive layout */}          <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl w-full text-center px-4 pb-32 sm:pb-24 lg:pb-32 xl:pb-40 min-h-[calc(100vh-8rem)] flex flex-col justify-center"
+            className="max-w-4xl w-full text-center px-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="glass rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 xl:p-12 shadow-2xl border border-white/50 max-h-[calc(100vh-12rem)] overflow-y-auto"
+              className="glass rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 xl:p-12 shadow-2xl border border-white/50 max-h-[80vh] overflow-y-auto"
             >
               <motion.h2 
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-gray-800 mb-6 sm:mb-8 lg:mb-10 xl:mb-12 tracking-wide"
